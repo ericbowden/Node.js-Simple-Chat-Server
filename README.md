@@ -1,5 +1,8 @@
-Node.js-Simple-Chat-Program
+Node.js-Simple-Chat-Server
 ===========================
+
+A simple chat server using [Node.js](http://nodejs.org/) and [Socket.IO](http://socket.io/)
+
 In order to run first you have to install the modules:
 
     cd ~/projectdir
