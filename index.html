@@ -1,0 +1,46 @@
+<html>
+	<head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		var socket = io.connect('http://192.168.1.72:3000');
+		socket.on('connect', function (data) {
+			console.log(data);
+            if(data)
+                $('body').append('</br>'+data);
+		});
+		socket.on('message', function (data) {
+			console.log(data);
+            var messages = data.messages;
+            for(var i in messages)
+                $('body').append('</br>'+messages[i].user +' says: '+messages[i].message);
+		});
+        socket.on('disconnect', function (data) {
+            console.log(data);
+            $('body').append('</br>'+data);
+        });
+        $(document).ready(function(){
+            $('#send').click(function() {
+                var msg = $('#field').val();
+                if(msg) {
+					socket.send(msg);
+					$('body').append('</br>You say: '+msg);
+					$('#field').val('');
+                }
+            });
+            $('form').on('submit', function () {
+                return false;
+            });
+        });
+
+		</script>
+	</head>	
+	<body>
+
+        <form>
+            <input id='field' type="text" />
+            <input id='send' type="submit" value="send" />
+        </form>
+
+	</body>
+</html>
