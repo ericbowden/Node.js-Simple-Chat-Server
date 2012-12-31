@@ -13,3 +13,5 @@ Then to start the server:
     node app.js
     
 This will start the server on port 3000, navigate to http://localhost:3000/ in a browser window
+
+Other computers can connect to the server through your computer's IP address
