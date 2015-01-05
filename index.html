@@ -3,8 +3,8 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-		var socket = io.connect('/');
-		socket.on('connect', function (data) {
+		var socket = io();
+		socket.on('client_connect', function (data) {
 			console.log(data);
             if(data)
                 $('body').append('</br>'+data);
@@ -15,7 +15,7 @@
             for(var i in messages)
                 $('body').append('</br>'+messages[i].user +' says: '+messages[i].message);
 		});
-        socket.on('disconnect', function (data) {
+        socket.on('client_disconnect', function (data) {
             console.log(data);
             $('body').append('</br>'+data);
         });
